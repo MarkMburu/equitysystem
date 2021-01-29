@@ -18,6 +18,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// MONGO_URI="mongodb+srv://markmburu:%23Mack1789@cluster0.suleo.mongodb.net/<dbname>?retryWrites=true&w=majority"
 
 const uri = process.env.MONGO_URI
 
