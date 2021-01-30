@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const {Schema} = mongoose;
 
-const conducterSchema = new Schema({
+const CountyFeesSchema = new Schema({
     amount: {
         type: Number,
         required: true
@@ -21,6 +21,6 @@ const conducterSchema = new Schema({
         ref: "Project"
     }
 })
-const Conducter = mongoose.model("Conducter",conducterSchema);
+const CountyFees = mongoose.model("CountyFees",CountyFeesSchema);
 
-module.exports = Conducter;
+module.exports = CountyFees;
