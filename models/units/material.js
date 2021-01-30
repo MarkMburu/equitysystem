@@ -12,22 +12,16 @@ const materialSchema = new Schema({
         type: Number,
         required: true
     },
+    
     amount:{
         type: Number,
         require: true
     },
-    unit:{
-    type : Schema.Types.ObjectId,
-    ref: "Unit"
-},
-// future upgrade
 
-//  amounts:[
-//     {
-//         type : Schema.Types.ObjectId,
-//         ref: "amount"
-//     }
-// ]
+     project:{
+    type: Schema.Types.ObjectId,
+    ref: "Project"
+}
 })
 
 const Material = mongoose.model("Material",materialSchema);

@@ -16,9 +16,9 @@ const labourSchema = new Schema({
         type: Number,
         required: true
     },
-    unit:{
-        type : Schema.Types.ObjectId,
-        ref: "Unit"
+    project:{
+        type: Schema.Types.ObjectId,
+        ref: "Project"
     }
 
 })

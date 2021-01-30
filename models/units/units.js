@@ -14,17 +14,10 @@ const unitSchema = new Schema({
        type: String,
        required: true
     },
-    labourers:[
-        {
+    project:{
         type: Schema.Types.ObjectId,
-        ref: "Labour"
+        ref: "Project"
     }
-    ],
-    materials:[{
-        type: Schema.Types.ObjectId,
-        ref:"Material"
-    },
-],
     
 });
 module.exports = mongoose.model("Unit",unitSchema)
