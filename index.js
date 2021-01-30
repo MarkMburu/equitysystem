@@ -40,10 +40,12 @@ const labourRouter = require("./Routes/labour");
 const authRouter = require("./Routes/auth");
 const updateRouter = require("./Routes/updateRoute");
 const deleteRouter = require("./Routes/deleteRoute");
+const getRouter = require("./Routes/getRoutes");
 app.use("/api",authRouter);
 app.use('/project',projectRouter);
 app.use("/update",updateRouter);
 app.use("/delete",deleteRouter);
+app.use("/get",getRouter);
 app.use("/unit",unitRouter)
 app.use("/labour",labourRouter)
 app.use(notFound);
