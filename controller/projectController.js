@@ -19,10 +19,10 @@ const postProject = (req,res)=>{
 };
 const addUnitToProject =(req,res)=>{
     let {unitName, unitNumber,isApproved} = req.body
-    db.Unit.create({unitName, unitNumber,isApproved})
+    let project = req.body.project_id
+    db.Unit.create({unitName, unitNumber,isApproved,project})
     .then((dbunit)=>{
-        console.log(dbunit)
-    return db.Project.findOneAndUpdate({ _id: req.body._id }, {$push: {units: dbunit._id}}, { new: true });
+    return db.Project.findOneAndUpdate({ _id: project}, {$push: {units: dbunit._id}}, { new: true });
     })
     .then(function(dbProject) {
         // If we were able to successfully update a Product, send it back to the client
@@ -33,13 +33,11 @@ const addUnitToProject =(req,res)=>{
       });
 }
 
-
 const addLabourToProject =(req,res)=>{
-    const {_id,...data} = req.body;
-    db.Labour.create(data)
+    db.Labour.create(req.body)
     .then((dblabour)=>{
         console.log(dblabour)
-    return db.Project.findOneAndUpdate({ _id: req.body._id }, {$push: {labour: dblabour._id}}, { new: true });
+    return db.Project.findOneAndUpdate({ _id: req.body.project }, {$push: {labourers: dblabour._id}}, { new: true });
     })
     .then(function(dbProject) {
         // If we were able to successfully update a Product, send it back to the client
@@ -51,10 +49,9 @@ const addLabourToProject =(req,res)=>{
 }
 
 const addMaterialToProject =(req,res)=>{
-    const {_id,...data} = req.body;
-    db.Material.create(data)
+    db.Material.create(req.body)
     .then((dbmaterial)=>{
-    return db.Project.findOneAndUpdate({ _id: req.body._id }, {$push: {material: dbmaterial._id}}, { new: true });
+    return db.Project.findOneAndUpdate({ _id: req.body.project }, {$push: {material: dbmaterial._id}}, { new: true });
     })
     .then(function(dbProject) {
         // If we were able to successfully update a Product, send it back to the client
@@ -151,9 +148,17 @@ const getOneProject = (req,res)=>{
 }
 
 const deleteProject =(req,res)=>{
-    db.Project.findByIdAndDelete(req.params.id)
+    db.Unit.deleteMany({project: req.params.id})
     .then(()=> res.json('Project deleted'))
     .catch(err => res.status(400).json('Error: '+err));
+    db.Labour.deleteMany({project: req.params.id})
+    .then(()=> res.json('Project deleted'))
+    .catch(err => res.status(400).json('Error: '+err));
+    db.Project.findByIdAndRemove(req.params.id)
+    .then(()=> res.json('Project deleted'))
+    .catch(err => res.status(400).json('Error: '+err));
+
+    return
 }
 
 

@@ -8,13 +8,13 @@ const {updateUnit,
     updateFuel } = require("../controller/UpdateController");
 
 const router = require("express").Router();
-router.route("/unit").put(updateUnit);
-router.route("/labour").put(updateLabour);
-router.route("/material").put(updateMaterial);
-router.route("/driver").put(updateDriver);
+router.route("/unit/:id").put(updateUnit);
+router.route("/labour/:id").put(updateLabour);
+router.route("/material/:id").put(updateMaterial);
+router.route("/driver/:id").put(updateDriver);
 router.route("/conducter").put(updateConducter);
-router.route("/clerk").put(updateClerk);
-router.route("/fuel").put(updateFuel);
-router.route("county").put(updateCounty);
+router.route("/clerk/:id").put(updateClerk);
+router.route("/fuel/:id").put(updateFuel);
+router.route("county/:id").put(updateCounty);
 
 module.exports = router;

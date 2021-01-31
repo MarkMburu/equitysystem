@@ -8,13 +8,13 @@ const {deleteUnit,
     deleteMaterial}  = require("../controller/deleteController");
 
 const router = require("express").Router();
-router.route("/unit").delete(deleteUnit);
-router.route("/fuel").delete(deleteFuel);
-router.route("/labour").delete(deleteLabour);
-router.route("/material").delete(deleteMaterial);
-router.route("/county").delete(deleteCounty);
-router.route("/conducter").delete(deleteConducter);
-router.route("/driver").delete(deleteDriver);
-router.route("/clerk").delete(deleteClerk);
+router.route("/unit/:id").delete(deleteUnit);
+router.route("/fuel/:id").delete(deleteFuel);
+router.route("/labour/:id").delete(deleteLabour);
+router.route("/material/:id").delete(deleteMaterial);
+router.route("/county/:id").delete(deleteCounty);
+router.route("/conducter/:id").delete(deleteConducter);
+router.route("/driver/:id").delete(deleteDriver);
+router.route("/clerk/:id").delete(deleteClerk);
 
 module.exports = router
