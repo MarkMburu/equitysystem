@@ -139,7 +139,15 @@ const addCountyFeesToProjects =(req,res)=>{
 const getOneProject = (req,res)=>{
     db.Project.findOne({ _id: req.params.id })
     .populate("units")
+    .populate("fuel")
+    .populate("materials")
+    .populate("drivers")
+    .populate("clerkofworks")
+    .populate("countyFees")
+    .populate("conducters")
+    .populate("labourers")
     .then(function(dbProject) {
+      console.log(dbproject)
         res.json(dbProject);
     })
     .catch(function(err) {

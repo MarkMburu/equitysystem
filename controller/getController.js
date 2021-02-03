@@ -29,7 +29,69 @@ const getFuel = (req,res)=>{
     })
     .catch((err)=>{res.json(err)})
 }
-
+const getFuelPerProject = (req,res)=>{
+    db.Project.findOne({ _id: req.params.id })
+    .populate("fuel")
+    .then((dbfuel) => {
+        console.log(dbfuel)
+        res.json(dbfuel)
+    })
+    .catch((err)=>{res.json(err)})
+}
+const getLabourPerProject=(req,res)=>{
+    db.Project.findOne({ _id: req.params.id })
+    .populate("labourers")
+    .then((dblabour)=>{
+        console.log(dblabour)
+        res.json(dblabour)
+    })
+    .catch(dblabour)
+}
+const getMaterialsPerProject=(req,res)=>{
+    db.Project.findOne({ _id: req.params.id })
+    .populate("materials")
+    .then((dbmaterials)=>{
+        console.log(dbmaterials)
+        res.json(dbmaterials)
+    })
+    .catch(dbmaterials)
+}
+const getConductersPerProject=(req,res)=>{
+    db.Project.findOne({ _id: req.params.id })
+    .populate("conducters")
+    .then((dbconducters)=>{
+        console.log(dbconducters)
+        res.json(dbconducters)
+    })
+    .catch(dbconducters)
+}
+const getDriversPerProject=(req,res)=>{
+    db.Project.findOne({ _id: req.params.id })
+    .populate("drivers")
+    .then((dbdrivers)=>{
+        console.log(dbdrivers)
+        res.json(dbdrivers)
+    })
+    .catch(dbdrivers)
+}
+const getClerkPerProject=(req,res)=>{
+    db.Project.findOne({ _id: req.params.id })
+    .populate("clerkofworks")
+    .then((dbclerk)=>{
+        console.log(dbclerk)
+        res.json(dbclerk)
+    })
+    .catch(dbclerk)
+}
+const getCountFeesPerProject=(req,res)=>{
+    db.Project.findOne({ _id: req.params.id })
+    .populate("countyFees")
+    .then((dbcounty)=>{
+        console.log(dbcounty)
+        res.json(dbcounty)
+    })
+    .catch(dbclerk)
+}
 const getDrivers = (req,res)=>{
     db.Driver.find({})
     .then((dbdriver) => {
@@ -67,5 +129,12 @@ module.exports = {
     getDrivers,
     getConducter,
     getClerks,
+    getCountyFees,
+    getFuelPerProject,
+    getLabourPerProject,
+    getMaterialsPerProject,
+    getConductersPerProject,
+    getDriversPerProject,
+    getClerkPerProject,
     getCountyFees
 }
