@@ -23,9 +23,7 @@ const { getUnits,
     router.route("/county/:id").get(getConductersPerProject);
     router.route("/materials/:id").get(getMaterialsPerProject);
     router.route("/labour/:id").get(getLabourPerProject);
-     router.route("/driver/:id").get(getDriversPerProject);
-    router.route(""),get()
-    router.route(""),get()
+    router.route("/driver/:id").get(getDriversPerProject);
     router.route("/labour").get(getLabour);
     router.route("/driver").get(getDrivers);
     router.route("/material").get(getMaterials);
