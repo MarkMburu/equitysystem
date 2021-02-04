@@ -63,7 +63,7 @@ const getConductersPerProject=(req,res)=>{
         console.log(dbconducters)
         res.json(dbconducters)
     })
-    .catch(dbconducters)
+    .catch(err => console.log(err))
 }
 const getDriversPerProject=(req,res)=>{
     db.Project.findOne({ _id: req.params.id })
@@ -72,7 +72,7 @@ const getDriversPerProject=(req,res)=>{
         console.log(dbdrivers)
         res.json(dbdrivers)
     })
-    .catch(dbdrivers)
+    .catch(err => console.log(error))
 }
 const getClerkPerProject=(req,res)=>{
     db.Project.findOne({ _id: req.params.id })
@@ -81,16 +81,16 @@ const getClerkPerProject=(req,res)=>{
         console.log(dbclerk)
         res.json(dbclerk)
     })
-    .catch(dbclerk)
+    .catch(err => console.log(err))
 }
-const getCountFeesPerProject=(req,res)=>{
+const getCountyFeesPerProject=(req,res)=>{
     db.Project.findOne({ _id: req.params.id })
     .populate("countyFees")
     .then((dbcounty)=>{
         console.log(dbcounty)
         res.json(dbcounty)
     })
-    .catch(dbclerk)
+    .catch(err =>console.log(err))
 }
 const getDrivers = (req,res)=>{
     db.Driver.find({})
@@ -136,5 +136,5 @@ module.exports = {
     getConductersPerProject,
     getDriversPerProject,
     getClerkPerProject,
-    getCountyFees
+    getCountyFeesPerProject
 }

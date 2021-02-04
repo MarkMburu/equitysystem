@@ -12,7 +12,7 @@ const { getUnits,
     getConductersPerProject,
     getDriversPerProject,
     getClerkPerProject,
-    getCountyFees} = require("../controller/getController");
+    getCountyFeesPerProject} = require("../controller/getController");
 
     const router = require("express").Router();
 
@@ -20,10 +20,11 @@ const { getUnits,
     router.route("/fuel").get(getFuel);
     router.route("/fuel/:id").get(getFuelPerProject);
     router.route("/clerk/:id").get(getClerkPerProject);
-    router.route("/county/:id").get(getConductersPerProject);
+    router.route("/county/:id").get(getCountyFeesPerProject);
     router.route("/materials/:id").get(getMaterialsPerProject);
     router.route("/labour/:id").get(getLabourPerProject);
     router.route("/driver/:id").get(getDriversPerProject);
+    router.route("/conducter/:id").get(getConductersPerProject);
     router.route("/labour").get(getLabour);
     router.route("/driver").get(getDrivers);
     router.route("/material").get(getMaterials);

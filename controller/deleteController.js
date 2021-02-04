@@ -17,7 +17,7 @@ const deleteFuel=(req,res)=>{
     .catch(err => res.status(400).json('Error: '+err));
 }
 const deleteDriver=(req,res)=>{
-    db.Unit.findByIdAndDelete(req.params.id)
+    db.Driver.findByIdAndDelete(req.params.id)
     .then(()=> res.json('Driver Deleted'))
     .catch(err => res.status(400).json('Error: '+err));
 }

@@ -6,9 +6,10 @@ const projectSchema = new Schema({
     projectName:{type:String,required:true},
     projectNumber:{type:Number,required:true},
     numberOfUnits:{type:Number,required:true},
+    
     clerkofworks:[{
         type:Schema.Types.ObjectId,
-        ref:"lerkOfWorks"
+        ref:"ClerkOfWork"
     }],
     countyFees:[{
         type:Schema.Types.ObjectId,

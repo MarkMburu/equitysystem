@@ -15,10 +15,9 @@ const FuelSchema = new Schema({
         type:  Date,
         required: true
     },  
-
     project:{
         type: Schema.Types.ObjectId,
-        ref: "Project"
+        ref: "Project",
     }
 })
 const Fuel = mongoose.model("Fuel",FuelSchema);

@@ -63,24 +63,26 @@ const addMaterialToProject =(req,res)=>{
 }
 
 const addDriverToProject =(req,res)=>{
-    const {_id,...data} = req.body;
-    db.Driver.create(data)
-    .then((dbdriver)=>{
-    return db.Project.findOneAndUpdate({ _id: req.body._id }, {$push: {driver: dbdriver._id}}, { new: true });
+  const {id, from,to,amount} = req.body
+  let project = id
+  db.Driver.create({from,to,amount,project})
+  .then((dbdriver)=>{
+  return db.Project.findOneAndUpdate({ _id: req.body.id }, {$push: {drivers: dbdriver._id}}, { new: true });
+  })
+  .then(function(dbProject) {
+      // If we were able to successfully update a Product, send it back to the client
+      res.json(dbProject);
     })
-    .then(function(dbProject) {
-        // If we were able to successfully update a Product, send it back to the client
-        res.json(dbProject);
-      })
-    .catch(function(err) {
-        res.json(err);
-      });
+  .catch(function(err) {
+      res.json(err);
+    });
 }
 const addFuelToProject =(req,res)=>{
-    const {_id,...data} = req.body;
-    db.Fuel.create(data)
+    const {id, from,to,amount} = req.body
+    let project = id
+    db.Fuel.create({from,to,amount,project})
     .then((dbfuel)=>{
-    return db.Project.findOneAndUpdate({ _id: req.body._id }, {$push: {fuel: dbfuel._id}}, { new: true });
+    return db.Project.findOneAndUpdate({ _id: req.body.id }, {$push: {fuel: dbfuel._id}}, { new: true });
     })
     .then(function(dbProject) {
         // If we were able to successfully update a Product, send it back to the client
@@ -92,10 +94,11 @@ const addFuelToProject =(req,res)=>{
 }
 
 const addConducterToProject =(req,res)=>{
-    const {_id,...data} = req.body;
-    db.Conducter.create(data)
+     const {id, from,to,amount} = req.body
+    let project = id
+    db.Conducter.create({project, from,to,amount})
     .then((dbconducter)=>{
-    return db.Project.findOneAndUpdate({ _id: req.body._id }, {$push: {conducter: dbconducter._id}}, { new: true });
+    return db.Project.findOneAndUpdate({ _id: req.body.id }, {$push: {conducters: dbconducter._id}}, { new: true });
     })
     .then(function(dbProject) {
         // If we were able to successfully update a Product, send it back to the client
@@ -107,10 +110,11 @@ const addConducterToProject =(req,res)=>{
 }
 
 const addClerkToProject =(req,res)=>{
-    const {_id,...data} = req.body;
-    db.ClerkOfWorks.create(data)
+  const {id, from,to,amount} = req.body
+  let project = id
+    db.ClerkOfWorks.create({project, from,to,amount})
     .then((dbclerk)=>{
-    return db.Project.findOneAndUpdate({ _id: req.body._id }, {$push: {clerkofworks : dbclerk._id}}, { new: true });
+    return db.Project.findOneAndUpdate({ _id: req.body.id }, {$push: {clerkofworks : dbclerk._id}}, { new: true });
     })
     .then(function(dbProject) {
         // If we were able to successfully update a Product, send it back to the client
@@ -125,7 +129,7 @@ const addCountyFeesToProjects =(req,res)=>{
     const {_id,...data} = req.body;
     db.CountyFees.create(data)
     .then((dbcounty)=>{
-    return db.Project.findOneAndUpdate({ _id: req.body._id }, {$push: {countyfees : dbcounty._id}}, { new: true });
+    return db.Project.findOneAndUpdate({ _id: req.body.id }, {$push: {countyFees : dbcounty._id}}, { new: true });
     })
     .then(function(dbProject) {
         // If we were able to successfully update a Product, send it back to the client

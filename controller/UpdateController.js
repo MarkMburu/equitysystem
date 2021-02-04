@@ -49,8 +49,9 @@ const updateClerk = (req,res)=>{
 const updateFuel = (req,res)=>{
     const{_id, ...data} = req.body 
      db.Fuel.findOneAndUpdate(req.params.id, data)
-    .then(()=> res.json('Fuel updated'))
-     .catch(err => res.status(400).json('Error: '+err));
+     console.log("updated")
+    .then(()=> console.log('Fuel updated'))
+    .catch(err => console.log(err));
 }
 
 module.exports = {
