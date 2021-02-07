@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 const {Schema} = mongoose;
-
+// MaterialForm.js:68 {project: "6019d1f87327c70f2060e5e3", quantity: "1", amount: "120", description: "1234", title: "Cement"}
 const materialSchema = new Schema({
-    name:{
+    title:{
         type:String,
         required: true,
 
     },
-    number:{
+    quantity:{
         type: Number,
         required: true
     },
@@ -16,6 +16,10 @@ const materialSchema = new Schema({
     amount:{
         type: Number,
         require: true
+    },
+
+    description:{
+        type: String
     },
 
      project:{

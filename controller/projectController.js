@@ -7,6 +7,7 @@ const getAllProjects = (req,res)=>{
 };
 
 const postProject = (req,res)=>{
+   if(!req.body._id){
     let newProject = new Project(req.body);
     newProject.save()
     .then((dbproject) => {
@@ -16,6 +17,8 @@ const postProject = (req,res)=>{
         console.log(req.body)
         console.log(err)
     })
+   }
+  
 };
 const addUnitToProject =(req,res)=>{
     let {unitName, unitNumber,isApproved} = req.body
@@ -49,9 +52,10 @@ const addLabourToProject =(req,res)=>{
 }
 
 const addMaterialToProject =(req,res)=>{
+  console.log(req.body)
     db.Material.create(req.body)
     .then((dbmaterial)=>{
-    return db.Project.findOneAndUpdate({ _id: req.body.project }, {$push: {material: dbmaterial._id}}, { new: true });
+    return db.Project.findOneAndUpdate({ _id: req.body.project }, {$push: {materials: dbmaterial._id}}, { new: true });
     })
     .then(function(dbProject) {
         // If we were able to successfully update a Product, send it back to the client
@@ -174,13 +178,20 @@ const deleteProject =(req,res)=>{
 }
 
 
-const updateProject = (req,res)=>{
-const{_id, ...data} = req.body 
- db.Project.findOneAndUpdate(req.params.id, data)
-.then(()=> res.json('project updated'))
- .catch(err => res.status(400).json('Error: '+err));
-}
-
+const updateProject = async (req,res)=>{
+   db.Project.findById(req.params.id)
+   .then(project => {
+       project.projectName = req.body.projectName
+       project.projectNumber=req.body.projectNumber
+       project.numberOfUnits = req.body.numberOfUnits
+       project.from = req.body.from
+       project.to = req.body.to
+       project.save()
+       .then(()=> res.json('Project updated'))
+       .catch(err => res.status(400).json('Error: '+err));
+        })
+        .catch(err => res.status(400).json('Error: '+err));
+   }
 
 module.exports = {
 postProject,

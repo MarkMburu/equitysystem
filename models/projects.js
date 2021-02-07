@@ -6,7 +6,8 @@ const projectSchema = new Schema({
     projectName:{type:String,required:true},
     projectNumber:{type:Number,required:true},
     numberOfUnits:{type:Number,required:true},
-    
+    from:{type:Date},
+    to:{type:Date},
     clerkofworks:[{
         type:Schema.Types.ObjectId,
         ref:"ClerkOfWork"

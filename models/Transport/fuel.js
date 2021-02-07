@@ -15,6 +15,9 @@ const FuelSchema = new Schema({
         type:  Date,
         required: true
     },  
+    comments:{
+        type: String
+    },
     project:{
         type: Schema.Types.ObjectId,
         ref: "Project",

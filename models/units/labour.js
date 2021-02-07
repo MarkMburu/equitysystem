@@ -4,6 +4,8 @@ const {Schema} = mongoose;
 
 
 const labourSchema = new Schema({
+    from:{type:Date},
+    to:{type:Date},
     category:{
         type: String,
         required: true
