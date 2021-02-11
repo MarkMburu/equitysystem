@@ -36,6 +36,8 @@ const updateMaterial = (req,res)=>{
         material.description = req.body.description
         material.quantity = req.body.quantity
         material.project = req.body.project
+        material.from = req.body.from
+        material.to = req.body.to
         material.save()
         .then(()=> res.json('Material updated'))
         .catch(err => res.status(400).json('Error: '+err));
